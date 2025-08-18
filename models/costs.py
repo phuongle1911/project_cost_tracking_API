@@ -8,7 +8,7 @@ class Cost(db.Model):
 # )
   id = db.Column(db.Integer, primary_key = True)
   project_id =  db.Column(db.Integer, db.ForeignKey("projects.id"), nullable = False)
-  supplier_abn = db.Column(db.Integer, db.ForeignKey("suppliers.abn"))
+  supplier_id = db.Column(db.Integer, db.ForeignKey("suppliers.id"))
   date = db.Column(db.Date, nullable = False)
   invoice_no = db.Column(db.String(100))
   description = db.Column(db.String(255),nullable = False)

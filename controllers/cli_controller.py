@@ -88,27 +88,173 @@ def seed_tables():
 
   suppliers = [
     Supplier(
+      abn= "04 526 384 700",
       name="Microsoft",
       sector="software",
-      address="Sydney CBD",
+      address="Sydney",
       email="sales@microsoft.com.au"
     ),
     Supplier(
-      name="Microsoft",
-      sector="software",
-      address="Sydney CBD",
-      email="sales@microsoft.com.au"
+      abn="65 000 087 936",
+      name="Jaycar",
+      sector="hardware",
+      address="Notting Hill, VIC",
+      email="sales@jaycar.com.au"
     ),
     Supplier(
-      name="Microsoft",
-      sector="software",
-      address="Sydney CBD",
-      email="sales@microsoft.com.au"
+      abn="63 605 345 891",
+      name="Amazon Web Services",
+      sector="cloud computing",
+      address="Sydney",
+      email="sales@amazon.com.au"
     ),
     Supplier(
-      name="Microsoft",
-      sector="software",
-      address="Sydney CBD",
-      email="sales@microsoft.com.au"
+      abn="37 093 114 286",
+      name="JB Hifi",
+      sector="hardware",
+      address="Melbourne",
+      email="sales@jbhifi.com.au"
     ),
   ]
+
+  db.session.add_all(suppliers)
+
+  project_personnel=[
+    ProjectPersonnel(
+      staff=staffs[3],
+      project=projects[0],
+      project_role="Project Manager"
+    ),
+    ProjectPersonnel(
+      staff=staffs[0],
+      project=projects[0],
+      project_role="Tester"
+    ),
+    ProjectPersonnel(
+      staff=staffs[2],
+      project=projects[0],
+      project_role="Developer"
+    ),
+    ProjectPersonnel(
+      staff=staffs[3],
+      project=projects[1],
+      project_role="Project Manager"
+    ),
+     ProjectPersonnel(
+      staff=staffs[1],
+      project=projects[1],
+      project_role="Tester"
+    ),
+    ProjectPersonnel(
+      staff=staffs[0],
+      project=projects[1],
+      project_role="Developer"
+    ),
+     ProjectPersonnel(
+      staff=staffs[3],
+      project=projects[2],
+      project_role="Project Manager"
+    ),
+    ProjectPersonnel(
+      staff=staffs[2],
+      project=projects[2],
+      project_role="Developer"
+    ),
+    ProjectPersonnel(
+      staff=staffs[0],
+      project=projects[2],
+      project_role="Tester"
+    ),
+    ProjectPersonnel(
+      staff=staffs[1],
+      project=projects[2],
+      project_role="Support Engineer"
+    ),
+    ProjectPersonnel(
+      staff=staffs[4],
+      project=projects[2],
+      project_role="Project Director"
+    )
+  ]
+
+  db.session.add_all(project_personnel)
+
+  project_costs = [
+    Cost(
+      project=projects[0],
+      supplier=suppliers[1],
+      date="2024-06-30",
+      invoice_no="INV2067",
+      description="Wifi router",
+      value=2299
+    ),
+    Cost(
+      project=projects[0],
+      supplier=suppliers[2],
+      date="2024-12-20",
+      invoice_no="INV1746",
+      description="AWS subscription",
+      value=1230
+    ),
+    Cost(
+      project=projects[0],
+      date="2024-10-30",
+      description="labour 20/6/24 to 30/10/24",
+      value=15550
+    ),
+    Cost(
+      project=projects[0],
+      date="2025-01-31",
+      description="labour 31/10/24 to 31/01/25",
+      value=10400
+    ),
+    Cost(
+      project=projects[1],
+      supplier=suppliers[0],
+      date="2025-04-22",
+      invoice_no="INV3155",
+      description="Microsoft subscription",
+      value=2453
+    ),
+    Cost(
+      project=projects[1],
+      date="2025-06-30",
+      description="labour 1/2/25 to 30/6/25",
+      value=15300
+    ),
+    Cost(
+      project=projects[2],
+      supplier=suppliers[3],
+      date="2025-03-19",
+      invoice_no="INV1722",
+      description="Hard drive",
+      value=1250
+    ),
+    Cost(
+      project=projects[2],
+      supplier=suppliers[2],
+      date="2025-02-27",
+      invoice_no="INV6800",
+      description="AWS plugin",
+      value=600
+    ),
+    Cost(
+      project=projects[2],
+      date="2025-07-30",
+      description="labour from 1/2/25 to 30/7/25",
+      value=13400
+    ),
+    Cost(
+      project=projects[2],
+      supplier=suppliers[3],
+      date="2024-06-30",
+      invoice_no="INV3788",
+      description="Macbook laptop",
+      value=3299
+    ),
+  ]
+
+  db.session.add_all(project_costs)
+
+  db.session.commit()
+  print("Table seeded!")
