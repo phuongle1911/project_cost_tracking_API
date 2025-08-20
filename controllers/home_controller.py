@@ -5,4 +5,4 @@ homepage_bp = Blueprint("homepage",__name__)
 
 @homepage_bp.route("/")
 def get_homepage():
-  return "<h1>Welcome to Project Cost Tracking website<h1>!"
+  return "<h2>Welcome to Project Cost Tracking website<h2>"
