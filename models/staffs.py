@@ -7,4 +7,4 @@ class Staff(db.Model):
   role = db.Column(db.String(255))
   email = db.Column(db.String(255), unique = True)
 
-  project_personnel = db.relationship("ProjectPersonnel", back_populates="staff")
+  project_personnel = db.relationship("ProjectPersonnel", back_populates="staff", cascade="all, delete")

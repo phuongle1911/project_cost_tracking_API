@@ -13,8 +13,8 @@ class Project(db.Model):
   contract_value = db.Column(db.Integer, nullable = False)
   budget = db.Column(db.Integer, nullable = False)
 
-  project_personnel = db.relationship("ProjectPersonnel", back_populates="project")
-  project_costs = db.relationship("Cost", back_populates="project")
+  project_personnel = db.relationship("ProjectPersonnel", back_populates="project", cascade="all, delete")
+  project_costs = db.relationship("Cost", back_populates="project", cascade="all, delete")
 
 
 

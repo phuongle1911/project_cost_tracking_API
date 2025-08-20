@@ -28,7 +28,7 @@ class ProjectPersonnelSchema(SQLAlchemyAutoSchema):
     load_instance = True
     include_fk = True
     include_relationships = True
-    fields = ("staff_id","project_id","project_role")
+    # fields = ("staff_id","project_id","project_role")
     ordered = True    
 
   project_role = auto_field(validate=Length(min=2))
@@ -52,10 +52,12 @@ class ProjectSchema(SQLAlchemyAutoSchema):
     
   @validates_schema
   def validate_date(self,data,**kwargs):
-    if data["start_date"] > data["estimate_completion_date"]:
-      raise ValidationError("Invalid date! Completion date must be later than start date!")
-    if data["budget"] >= data["contract_value"]:
-      raise ValidationError("Invalid budget value! Budget must be lower than contract value.")
+    if data["start_date"] and data["estimate_completion_date"]:
+      if data["start_date"] > data["estimate_completion_date"]:
+        raise ValidationError("Invalid date! Completion date must be later than start date!")
+      if data["budget"] >= data["contract_value"]:
+        raise ValidationError("Invalid budget value! Budget must be lower than contract value.")
+      
 
   @validates("contract_value","budget")
   def validate_number(self, value, data_key):
@@ -66,7 +68,7 @@ class ProjectSchema(SQLAlchemyAutoSchema):
                   error = "Invalid status! Only valid status are: Active, Closed"))
   
   project_personnel = fields.List(fields.Nested("ProjectPersonnelSchema", exclude=("project_id",)))
-  project_costs = fields.List(fields.Nested("CostSchema", only =("date","item_description","value",)))
+  project_costs = fields.List(fields.Nested("CostSchema", only =("date","description","value",)))
 
 class CostSchema(SQLAlchemyAutoSchema):
   class Meta:
@@ -74,7 +76,7 @@ class CostSchema(SQLAlchemyAutoSchema):
     load_instance = True
     include_fk = True
     include_relationships = True
-    fields = ("id","supplier_id","date","invoice_no","project_id","description","value")
+    # fields = ("id","supplier_id","date","invoice_no","project_id","description","value")
     ordered = True
   
   @validates("invoice_no","description")
@@ -87,7 +89,7 @@ class CostSchema(SQLAlchemyAutoSchema):
     if value <= 0:
       raise ValidationError("Invalid Spending value! Value must be greater than 0!")
 
-  project = fields.Nested("ProjectSchema",only=("id","name",))
+  project = fields.Nested("ProjectSchema",only=("name",))
   supplier = fields.Nested("SupplierSchema", only=("name", "address",))
 
 class SupplierSchema(SQLAlchemyAutoSchema):
@@ -95,7 +97,7 @@ class SupplierSchema(SQLAlchemyAutoSchema):
       model = Supplier
       load_instance = True
       include_relationships = True
-      fields = ("abn","name", "sector","address","email")
+      fields = ("id","abn","name", "sector","address","email")
       ordered = True  
 
   @validates("abn","name","sector","address")

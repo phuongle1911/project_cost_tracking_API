@@ -17,7 +17,7 @@ def register_error_handlers(app):
       if err.orig.pgcode == errorcodes.UNIQUE_VIOLATION:
         return {"message": err.orig.diag.message_primary}, 400
         
-    return {"message": "Database Integrity error has occured."}, 400
+    return  {"message": err.orig.diag.message_primary}, 400
   
   @app.errorhandler(DataError)
   def handle_data_error(err):
@@ -30,3 +30,4 @@ def register_error_handlers(app):
   @app.errorhandler(500)
   def handle_500(err):
     return {"message": "Server error occured."}, 500
+  
