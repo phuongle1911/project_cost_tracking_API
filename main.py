@@ -9,6 +9,7 @@ from controllers.staff_controller import staff_bp
 from controllers.project_personnel_controller import project_personnel_bp
 from controllers.supplier_controller import supplier_bp
 from controllers.project_cost_controller import project_cost_bp
+from controllers.home_controller import homepage_bp
 from utils.error_handlers import register_error_handlers
 
 load_dotenv()
@@ -25,6 +26,7 @@ def create_app():
   app.register_blueprint(project_personnel_bp)
   app.register_blueprint(supplier_bp)
   app.register_blueprint(project_cost_bp)
+  app.register_blueprint(homepage_bp)
   register_error_handlers(app)
   
   return app
