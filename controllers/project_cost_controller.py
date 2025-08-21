@@ -10,9 +10,9 @@ project_cost_bp = Blueprint("project_cost", __name__, url_prefix="/project_costs
 # GET /project_costs/
 @project_cost_bp.route("/")
 def get_project_costs():
-  location = request.args.get("location")
-  if location:
-    stmt = db.select(Cost).where(Cost.location==location)
+  date = request.args.get("date")
+  if date:
+    stmt = db.select(Cost).where(Cost.date==date)
   else:
     stmt = db.select(Cost).order_by(Cost.id)
 
