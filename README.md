@@ -1,7 +1,5 @@
 # Project Cost Tracking API Server
 
-*This README file is for Assignment marking purpose*
-
 ## About the project
 This project is for setting up and recording project costs during project delivery phase. Based on that, Project Manager can keep track of costs at any time during project delivery. 
 
