@@ -80,38 +80,9 @@ https://project-cost-tracking-api.onrender.com/projects?location=Sydney
   - All email must be in email format "abc@def.gkh
 
 
-## Feedbacks 
+## Future Upgrade
 
-### Feedback 1
-Feedback received by Aamod on below initial diagram:
-- There's a one to many relationship from projects to "incurred costs", and also from the junction table "cost_allocation" to "incurred costs". Maybe avoid the junction table connection. If you do plan to keep the connection:
-  
-- Have a separate PK in the junction tableIt works as a FK in the "incurred costs" table.
+- Develop User Interface to perform data manipulation (POST, PUT, PATCH requests)
+- Add database tables and relations, such as Client table (storing client details), Cost Code table (for project budget allocation).
 
-- The concept of "Incurred costs" and "Cost Allocation" seems redundant.
-responsible_staff in "incurred costs" table, is it supposed to track staff? If so, a good idea is to create a staffs table and link it (normalisation would help here).
 
-- You have "project manager" as well. So maybe project manager can link to "staffs" table?
-
-- Because you have project start, completion dates, you could also add a "status" attribute to the "projects" table that has (active, completed, cancelled, or something similar).
-![alt text](<images/ERD ver1.png>)
-
-**Actions**:
-- Remove project_cost_summary, cost_allocation and cost_codes tables. The reasons are:
-  - project_cost_summary data are calculated from project budget data and cost data, which are in projects and costs tables. Therefore, project_cost_summary table is redundant.  
-  - cost allocation and cost_codes tables are not essential at this project development stage, therefore being removed. These will be considered to integrate in the next stage. 
-- Data Normalisation:
-  - Creating staffs table, and a conjunction table "project_personnel" connecting projects and staffs tables. 
-  - Normalise costs table containing only direct relevant columns.
-
-Ammended and normalised ERD is as below:
-![alt text](<images/ERD ver2.png>)
-
-### Feedback 2
-Feedback received by an external developer
-- README file does not have information of how to perform POST, PUT/PATCH and DELETE request on the database
-- No information on date format needs to use. 
-
-**Actions**:
-- Add instruction of performing POST, PUT/PATCH and DELETE requests with Insomnia
-- Add instructions on date format and other data constraints in each table, so that the users can follow to avoid errors. 
