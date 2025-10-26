@@ -23,21 +23,14 @@ Features:
 - Add new data to tables
 - Delete data in tables
 
-The database is deployed using Neon.
-
-The API is deployed using Render, with following settings:
-![alt text](images/render1.png)
-![alt text](images/render2.png)
-![alt text](images/render3.png)
-
 ### How to use
 
-First, click https://insomnia.rest/ to dowload and get instructions on using Insomnia 
+First, click https://insomnia.rest/ to download and get instructions on using Insomnia 
 
 Accessing the Web services using link: https://project-cost-tracking-api.onrender.com/
 You will receive a Welcome message. 
 
-Now follow these below routes to access and maipulate datas in database tables:
+Now follow these below routes to access and manipulate data in database tables:
 
 - View all data in table: https://project-cost-tracking-api.onrender.com/"table name"
 - View individual project data by id: https://project-cost-tracking-api.onrender.com/"table name/"table id"
